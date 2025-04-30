@@ -149,7 +149,7 @@ def extract_region_from_arn(arn):
         return match.group(1)
     return "us-east-1"
 
-FASTAPI_ROOT = os.environ.get("FASTAPI_ROOT")  # 例: https://xxxx.ngrok.io
+FASTAPI_ROOT = os.environ.get("FASTAPI_ROOT")
 
 def lambda_handler(event, context):
     try:
@@ -166,7 +166,6 @@ def lambda_handler(event, context):
 
         print("Processing message:", message)
 
-        # 会話履歴をプロンプト形式に変換
         prompt_parts = []
         for m in conversation_history:
             role = "User" if m["role"] == "user" else "Assistant"
@@ -175,7 +174,6 @@ def lambda_handler(event, context):
         prompt_parts.append("Assistant:")
         prompt_text = "\n".join(prompt_parts)
 
-        # FastAPI へリクエスト
         print("Sending request to FastAPI at:", FASTAPI_ROOT)
         api_resp = requests.post(
             f"{FASTAPI_ROOT}/generate",
