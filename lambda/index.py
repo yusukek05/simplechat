@@ -29,7 +29,7 @@ def _build_prompt(messages: List[Dict[str, str]], latest_user_msg: str) -> str:
     """Return a newline-concatenated prompt without 'user:' / 'assistant:' labels."""
     text_parts: List[str] = [m["content"] for m in messages]
     text_parts.append(latest_user_msg)
-    return "\n".join(text_parts)  # ← 修正ポイント
+    return "\n".join(text_parts)
 
 
 def _call_llm(prompt: str) -> str:
