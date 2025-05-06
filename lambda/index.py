@@ -73,7 +73,7 @@ def lambda_handler(event: Dict[str, Any], context):  # noqa: D401
 
     # 1) parse request body ---------------------------------------------------
     try:
-        body = event.get("body", event)  # direct invoke vs API-Gw
+        body = event.get("body", event)
         if isinstance(body, str):
             body = json.loads(body)
 
@@ -108,7 +108,7 @@ def lambda_handler(event: Dict[str, Any], context):  # noqa: D401
         {"role": "assistant", "content": assistant_response},
     ]
 
-    # 5) return payload (same shape as original) ------------------------------
+    # 5) return payload ------------------------------
     return {
         "statusCode": 200,
         "headers": HEADERS,
